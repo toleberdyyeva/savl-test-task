@@ -12,7 +12,6 @@ function* handleGetNftsSearchByAddress(action: {
   payload: SavlAPI_GetNftsByAddressPayload;
 }) {
   const { payload } = action;
-  console.log("!!!");
   try {
     const { data }: { data: SavlAPI_NftByAddressResponse } = yield call(
       getNftByAddress,
@@ -21,7 +20,6 @@ function* handleGetNftsSearchByAddress(action: {
     yield put(NftsAddressesSliceActions.GetNftsAddressesInfoSucceed(data));
   } catch (e) {
     const error = ErrorParse(e);
-    console.log("????");
     if (error.isAxiosError) {
       yield put(
         NftsAddressesSliceActions.GetNftsAddressesInfoFailed({

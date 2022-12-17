@@ -11,7 +11,6 @@ const GetNftsAddressesInfoInit: CaseReducer<
   NftsAddressesModuleInitialState,
   PayloadAction<SavlAPI_GetNftsByAddressPayload>
 > = (state) => {
-  console.log("???????????");
   state.request_error = {};
   state.is_loading = true;
 };
@@ -20,7 +19,6 @@ const GetNftsAddressesInfoSucceed: CaseReducer<
   NftsAddressesModuleInitialState,
   PayloadAction<{ data: SavlAPI_NftByAddressResponse["data"] }>
 > = (state, { payload }) => {
-  console.log(payload);
   state.nfts_data = payload;
   state.is_loading = false;
   state.request_error = {};

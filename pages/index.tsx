@@ -1,6 +1,8 @@
 import { NextPage } from "next";
 // import Head from "next/head";
 import React from "react";
+import { END } from "redux-saga";
+import { SeacrhBlock } from "../components/SearchBlock";
 import { StoreWrapper } from "../store";
 import { NftsAddressesSliceActions } from "../store/modules/NftsAdresses";
 // import styles from "../../styles/Home.module.css";
@@ -13,6 +15,9 @@ export const getServerSideProps = StoreWrapper.getServerSideProps(
         address: "8PdqmeKdn3999sT3jkkx3JRquGqZAfr3m7F4G5NoWkuG",
       })
     );
+
+    store.dispatch(END);
+    await store.sagaTask.toPromise();
   }
 );
 
@@ -24,7 +29,9 @@ const IndexPage: NextPage = () => (
     {/* <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
     {/* <link rel="icon" href="/favicon.ico" /> */}
     {/* </Head> */}
-    <main />
+    <main>
+      <SeacrhBlock />
+    </main>
   </>
 );
 

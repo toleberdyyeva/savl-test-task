@@ -12,10 +12,9 @@ export const makeStore = () => {
   // Collecting sagas
   function* saga() {
     yield all(
-      Object.entries(rootSaga).filter(([_key, watcher]) => {
-        console.log(watcher);
-        return watcher && fork(watcher);
-      })
+      Object.entries(rootSaga).map(
+        ([_key, watcher]) => watcher && fork(watcher)
+      )
     );
   }
 
