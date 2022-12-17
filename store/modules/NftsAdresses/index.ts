@@ -1,6 +1,5 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
-import { act } from "react-dom/test-utils";
 import initialState from "./NftsAddresses.state";
 import reducers from "./NftsAddresses.reducers";
 
@@ -11,11 +10,10 @@ const NftsAddressesSlice = createSlice({
   initialState,
   reducers,
   extraReducers: (builder) => {
-    builder.addCase(HYDRATE, (state, action) => {
-      // console.log(action.payload, state);
-      console.log(current(state));
-      return { ...state, ...action.payload.NftsAddressesModule };
-    });
+    builder.addCase(HYDRATE, (state, action) => ({
+      ...state,
+      ...action.payload.NftsAddressesModule,
+    }));
   },
 });
 

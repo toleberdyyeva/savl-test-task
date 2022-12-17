@@ -37,4 +37,6 @@ export const makeStore = () => {
   return store;
 };
 
+export type SavlStore = ReturnType<typeof makeStore>;
+export type SavlRootState = ReturnType<SavlStore["getState"]>;
 export const StoreWrapper = createWrapper(makeStore);
