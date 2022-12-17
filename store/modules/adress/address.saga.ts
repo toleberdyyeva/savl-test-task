@@ -1,20 +1,35 @@
-import {all, call, put, takeLatest,} from 'redux-saga/effects';
+import { all, call, put, takeLatest } from "redux-saga/effects";
 import { AddressActions } from "./index";
-import {getNftByAddress} from "./address.services";
-import {SavlAPI_NftByAddressResponse} from "./types";
-import {SavlNftsByAddressFormatter} from "./helper";
+import { getNftByAddress } from "./address.services";
+import {
+  SavlAPI_GetNftsByAddressPayload,
+  SavlAPI_NftByAddressResponse,
+} from "./types";
+import { ErrorParse } from "../../../serivces/helper";
+// import { SavlNftsByAddressFormatter } from "./helper";
 
-function* handleGetNftsSearchByAddress(action: any) {
-    try {
-        const { data }:{ data: SavlAPI_NftByAddressResponse } = yield call(getNftByAddress, { address: '8PdqmeKdn3999sT3jkkx3JRquGqZAfr3m7F4G5NoWkuG'})
-        yield put(AddressActions.GetAddressInfoSuccess(data))
-    } catch (e) {
-
+function* handleGetNftsSearchByAddress(action: {
+  payload: SavlAPI_GetNftsByAddressPayload;
+}) {
+  const { payload } = action;
+  try {
+    const { data }: { data: SavlAPI_NftByAddressResponse } = yield call(
+      getNftByAddress,
+      payload
+    );
+    yield put(AddressActions.GetAddressInfoSuccess(data));
+  } catch (e) {
+    const error = ErrorParse(e);
+    if (error.isAxiosError) {
+      yield put(
+        AddressActions.GetAddressInfoFailed({ data: error.response.data })
+      );
     }
+  }
 }
 
-
-
 export default function* () {
-    yield all([takeLatest(AddressActions.GetAddressInfoInit, handleGetNftsSearchByAddress)]);
+  yield all([
+    takeLatest(AddressActions.GetAddressInfoInit, handleGetNftsSearchByAddress),
+  ]);
 }
