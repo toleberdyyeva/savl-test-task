@@ -1,3 +1,1 @@
-import styled from "styled-components";
-
-export const SeacrhInput = styled("input")``;
+export { default as InputSearch } from "./InputSearch.Container";
