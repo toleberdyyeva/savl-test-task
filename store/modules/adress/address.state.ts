@@ -1,5 +1,9 @@
 import {AddressModuleInitialState} from "./types";
 
 export default {
-    addresses: {}
+
+    nfts_data: {},
+    request_error: {},
+    is_loading: false
+
 } as AddressModuleInitialState
