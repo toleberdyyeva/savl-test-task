@@ -1,1 +1,1 @@
-export { AddressModule } from './modules/adress'
+export { NftsAddressesModule } from "./modules/NftsAdresses";

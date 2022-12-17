@@ -1,29 +1,32 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit";
 import {
-  AddressModuleInitialState,
+  NftsAddressesModuleInitialState,
   // eslint-disable-next-line camelcase
   SavlAPI_GetNftsByAddressPayload,
   SavlAPI_NftByAddressFailedResponse,
   SavlAPI_NftByAddressResponse,
 } from "./types";
 
-const GetAddressInfoInit: CaseReducer<
-  AddressModuleInitialState,
+const GetNftsAddressesInfoInit: CaseReducer<
+  NftsAddressesModuleInitialState,
   PayloadAction<SavlAPI_GetNftsByAddressPayload>
 > = (state) => {
+  console.log("???????????");
   state.request_error = {};
   state.is_loading = true;
 };
 
-const GetAddressInfoSuccess: CaseReducer<
-  AddressModuleInitialState,
+const GetNftsAddressesInfoSucceed: CaseReducer<
+  NftsAddressesModuleInitialState,
   PayloadAction<{ data: SavlAPI_NftByAddressResponse["data"] }>
-> = (state) => {
+> = (state, { payload }) => {
+  console.log(payload);
+  state.nfts_data = payload;
   state.is_loading = false;
   state.request_error = {};
 };
-const GetAddressInfoFailed: CaseReducer<
-  AddressModuleInitialState,
+const GetNftsAddressesInfoFailed: CaseReducer<
+  NftsAddressesModuleInitialState,
   PayloadAction<{ data: SavlAPI_NftByAddressFailedResponse["data"] }>
 > = (state, { payload }) => {
   state.is_loading = false;
@@ -31,7 +34,7 @@ const GetAddressInfoFailed: CaseReducer<
 };
 
 export default {
-  GetAddressInfoInit,
-  GetAddressInfoSuccess,
-  GetAddressInfoFailed,
+  GetNftsAddressesInfoInit,
+  GetNftsAddressesInfoSucceed,
+  GetNftsAddressesInfoFailed,
 };

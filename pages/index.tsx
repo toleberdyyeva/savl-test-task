@@ -2,14 +2,14 @@ import { NextPage } from "next";
 // import Head from "next/head";
 import React from "react";
 import { StoreWrapper } from "../store";
-import { AddressActions } from "../store/modules/adress";
+import { NftsAddressesSliceActions } from "../store/modules/NftsAdresses";
 // import styles from "../../styles/Home.module.css";
 // import { HomePageProps } from "./types";
 
 export const getServerSideProps = StoreWrapper.getServerSideProps(
   (store) => async (context) => {
     store.dispatch(
-      AddressActions.GetAddressInfoInit({
+      NftsAddressesSliceActions.GetNftsAddressesInfoInit({
         address: "8PdqmeKdn3999sT3jkkx3JRquGqZAfr3m7F4G5NoWkuG",
       })
     );

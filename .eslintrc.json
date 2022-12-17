@@ -5,12 +5,15 @@
     "camelcase": 0,
     "no-alert": 0,
     "no-param-reassign": 0,
+    "no-unused-vars": 1,
     "import/no-unassigned-import": 0,
     "import/no-named-as-default-member": 0,
     "prettier/prettier": ["error"],
     "no-restricted-imports": 0,
+    "import/no-extraneous-dependencies": 0,
     "react/function-component-definition": 0,
     "react/jsx-props-no-spreading": 0,
+    "import/prefer-default-export": 0,
     "react/jsx-filename-extension": [2, { "extensions": [
       ".js", ".jsx", ".ts", ".tsx"
     ] }],

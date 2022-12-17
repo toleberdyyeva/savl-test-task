@@ -1,4 +1,4 @@
-export interface AddressModuleInitialState {
+export interface NftsAddressesModuleInitialState {
   nfts_data: {};
   request_error: any;
   is_loading: boolean;

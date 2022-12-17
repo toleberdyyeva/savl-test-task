@@ -1,5 +1,5 @@
 import { StoreWrapper } from "../../store";
-import { AddressActions } from "../../store/modules/adress";
+import { NftsAddressesSliceActions } from "../../store/modules/NftsAdresses";
 import connect from "./SearchBlock.connect";
 import container from "./SearchBlock.container";
 

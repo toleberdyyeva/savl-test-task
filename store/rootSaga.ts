@@ -1,1 +1,1 @@
-export { AddressSaga } from './modules/adress'
+export { default as NftsAddressesSaga } from "./modules/NftsAdresses/NftsAddresses.saga";
