@@ -6,7 +6,7 @@ import Helpers from "./helper";
 const INPUT_ID = "InputSearch-Input";
 const InputSearchContainer: React.FC<InputSearchProps> = (props) => {
   // ---------------------------------------------------------------------- props section
-  const { value: initialValue, onSearchValueChange = () => {} } = props;
+  const { value: initialValue = "", onSearchValueChange = () => {} } = props;
   // ---------------------------------------------------------------------- state section
   const [value, setValue] = React.useState<string>(initialValue as string);
   const setInputValue = React.useCallback(

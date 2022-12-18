@@ -12,26 +12,37 @@ function* handleGetNftsSearchByAddress(action: {
   payload: SavlAPI_GetNftsByAddressPayload;
 }) {
   const { payload } = action;
-  try {
-    const { data }: { data: SavlAPI_NftByAddressResponse } = yield call(
-      getNftByAddress,
-      payload
-    );
-    yield put(
-      NftsAddressesSliceActions.GetNftsAddressesInfoSucceed({
-        ...data,
-        ...payload,
-      })
-    );
-  } catch (e) {
-    const error = ErrorParse(e);
-    if (error.isAxiosError) {
+  if (payload?.address?.length > 0) {
+    try {
+      const { data }: { data: SavlAPI_NftByAddressResponse } = yield call(
+        getNftByAddress,
+        payload
+      );
       yield put(
-        NftsAddressesSliceActions.GetNftsAddressesInfoFailed({
-          data: error.response.data,
+        NftsAddressesSliceActions.GetNftsAddressesInfoSucceed({
+          ...data,
+          ...payload,
         })
       );
+    } catch (e) {
+      const error = ErrorParse(e);
+      if (error.isAxiosError) {
+        yield put(
+          NftsAddressesSliceActions.GetNftsAddressesInfoFailed({
+            data: error.response.data,
+          })
+        );
+      }
     }
+  } else {
+    yield put(
+      NftsAddressesSliceActions.GetNftsAddressesInfoFailed({
+        data: {
+          type: "source - next/savl",
+          error: "Address not given",
+        },
+      })
+    );
   }
 }
 
