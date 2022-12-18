@@ -1,10 +1,14 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Button } from "../../components/Button";
+
+const typographyCommon = css`
+  line-height: 3.375rem;
+  font-size: 2.5rem;
+`;
 
 export const SearchTitle = styled("h1")`
   margin: 117px 0 48px;
-  line-height: 54px;
-  font-size: 2.5rem;
+  ${typographyCommon};
   font-weight: 600;
   text-align: center;
   color: #f5f8f9;
@@ -13,7 +17,7 @@ export const SearchTitle = styled("h1")`
   }
 `;
 
-export const SearchFormBlock = styled("div")`
+export const SearchFormBlock = styled("form")`
   width: 100%;
   max-width: 660px;
   margin: 0 auto;
@@ -33,4 +37,48 @@ export const SearchButton = styled(Button)`
   width: 87px;
   font-weight: 500;
   border-radius: 2px;
+`;
+
+export const SearchResultWrapper = styled("div")`
+  display: flex;
+  flex-direction: column;
+  color: white;
+`;
+
+export const ResultTItle = styled("p")`
+  color: white;
+  width: 100%;
+  ${typographyCommon};
+  font-weight: 500;
+  span.highlighted {
+    background: linear-gradient(
+      to left,
+      #001c1e -21.67%,
+      #006089 21.57%,
+      #00e0ee 62.15%,
+      #effcfd 106.06%
+    );
+    font-weight: 400;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+`;
+
+export const SearchResultImagesWrapper = styled("div")`
+  //background-color: red;
+  display: flex;
+  flex-wrap: wrap;
+  margin: -15px;
+`;
+
+export const NftImage = styled("div")`
+  flex-grow: 1;
+  //background-color: green;
+  width: 33.33%;
+  max-width: 33.33%;
+  padding: 15px;
+  .image_layer {
+    padding-top: 100%;
+    background-color: blue;
+  }
 `;

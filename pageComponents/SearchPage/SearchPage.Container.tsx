@@ -16,16 +16,23 @@ const SearchPageContainer: NextPage<SearchPageProps> = (props) => {
     router?.query?.address as string
   );
   // ---------------------------------------------------------------------- events section
-  const onSearchValueChanged: InputSearchProps["onSearchValueChange"] =
+  const onSearchValueChange: InputSearchProps["onSearchValueChange"] =
     React.useCallback((newValue: string) => {
-      console.log(newValue);
       setSearchValue(() => newValue);
     }, []);
+
+  const onSearchFormSubmit = React.useCallback(
+    (e: React.FormEvent<HTMLButtonElement | HTMLFormElement>) => {
+      e.preventDefault();
+    },
+    [searchValue]
+  );
   // ---------------------------------------------------------------------- child props section
   const layoutProps = {
     ...props,
     searchInitialValue: searchValue,
-    onSearchValueChanged,
+    onSearchValueChange,
+    onSearchFormSubmit,
   };
   // ---------------------------------------------------------------------- layout return
   return (

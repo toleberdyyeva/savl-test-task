@@ -12,6 +12,7 @@ const NftsAddressesSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(HYDRATE, (state, action) => ({
       ...state,
+      // @ts-ignore
       ...action.payload.NftsAddressesModule,
     }));
   },

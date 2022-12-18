@@ -17,7 +17,12 @@ function* handleGetNftsSearchByAddress(action: {
       getNftByAddress,
       payload
     );
-    yield put(NftsAddressesSliceActions.GetNftsAddressesInfoSucceed(data));
+    yield put(
+      NftsAddressesSliceActions.GetNftsAddressesInfoSucceed({
+        ...data,
+        ...payload,
+      })
+    );
   } catch (e) {
     const error = ErrorParse(e);
     if (error.isAxiosError) {

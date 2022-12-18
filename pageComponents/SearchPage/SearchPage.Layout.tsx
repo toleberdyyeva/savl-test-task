@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "../../components/Container";
 import { InputSearch } from "../../components/InputSearch";
+import { SearchPageLayoutSearchResult } from "./SearchPage.Layout_SearchResult";
 import { SearchPageLayoutProps } from "./types";
 import {
   SearchTitle,
@@ -10,9 +11,12 @@ import {
 
 const SearchPageLayout: React.FC<SearchPageLayoutProps> = (props) => {
   // ---------------------------------------------------------------------- props section
-  const { searchInitialValue, onSearchValueChanged } = props;
+  const { searchInitialValue, onSearchValueChange, onSearchFormSubmit } = props;
   // ---------------------------------------------------------------------- child props section
-  const inputProps = { value: searchInitialValue, onSearchValueChanged };
+  const inputProps = {
+    value: searchInitialValue,
+    onSearchValueChange,
+  };
   // ---------------------------------------------------------------------- layout return
   return (
     <Container>
@@ -20,10 +24,11 @@ const SearchPageLayout: React.FC<SearchPageLayoutProps> = (props) => {
         Search <span className="highlighted">NFT-collection </span>
         by address
       </SearchTitle>
-      <SearchFormBlock>
+      <SearchFormBlock onSubmit={onSearchFormSubmit}>
         <InputSearch {...inputProps} />
-        <SearchButton>Search</SearchButton>
+        <SearchButton onClick={onSearchFormSubmit}>Search</SearchButton>
       </SearchFormBlock>
+      <SearchPageLayoutSearchResult {...props} />
     </Container>
   );
 };

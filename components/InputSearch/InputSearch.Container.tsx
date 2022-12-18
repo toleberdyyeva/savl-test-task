@@ -16,7 +16,6 @@ const InputSearchContainer: React.FC<InputSearchProps> = (props) => {
   // ---------------------------------------------------------------------- effect section
   useEffect(() => {
     if (onSearchValueChange) {
-      console.log(value);
       onSearchValueChange(value as string);
     }
   }, [onSearchValueChange, value]);
