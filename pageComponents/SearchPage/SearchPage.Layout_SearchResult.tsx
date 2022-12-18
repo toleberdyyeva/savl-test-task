@@ -2,15 +2,30 @@ import React, { useEffect } from "react";
 import { SearchPageLayoutProps } from "./types";
 import {
   NftImage,
+  NftImageMock,
   ResultTItle,
   SearchResultImagesWrapper,
   SearchResultWrapper,
 } from "./SearchPage.Styles";
 import { NftDataWLink } from "../../store/modules/NftsAdresses/types";
 import { SavlApiInstance } from "../../serivces";
-import ArrowRight from "./arrorRight.svg";
+import ArrowRight from "./icons/arrorRight.svg";
+import LoadingIcon from "./icons/packIconLoading.svg";
 
-const ErrorBlock: React.FC<SearchPageLayoutProps> = () => <>Error</>;
+const ErrorBlock: React.FC<SearchPageLayoutProps> = ({ searchResult }) => (
+  <>
+    <ResultTItle>Error</ResultTItle>
+    <code
+      style={{
+        color: "rgba(255,255,255,0.6)",
+        width: "100%",
+        maxWidth: "500px",
+      }}
+    >
+      {JSON.stringify(searchResult.err?.errorInfo, null, 2)}
+    </code>
+  </>
+);
 
 const ResultImage: React.FC<NftDataWLink> = (props: NftDataWLink) => {
   const { image_request_url } = props;
@@ -71,7 +86,22 @@ const ResultBlock: React.FC<SearchPageLayoutProps> = (props) => {
     </>
   );
 };
-const LoadingBlock: React.FC<SearchPageLayoutProps> = () => <>Loading</>;
+const LoadingBlock: React.FC<SearchPageLayoutProps> = () => (
+  <>
+    <ResultTItle>
+      <span className="highlighted">Wait a bit…</span>
+    </ResultTItle>
+    <SearchResultImagesWrapper>
+      {[1, 2, 3].map((_, index) => (
+        <NftImageMock key={`${index}-loader`}>
+          <div className="cardWrapper">
+            <LoadingIcon />
+          </div>
+        </NftImageMock>
+      ))}
+    </SearchResultImagesWrapper>
+  </>
+);
 
 export const SearchPageLayoutSearchResult: React.FC<SearchPageLayoutProps> = (
   props

@@ -106,3 +106,23 @@ export const NftImage = styled("div")<{
     }
   }
 `;
+
+export const NftImageMock = styled("div")`
+  flex-grow: 1;
+  width: 33.33%;
+  max-width: 33.33%;
+  padding: 15px;
+  overflow: hidden;
+  .cardWrapper {
+    //background-color: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    border: 2px solid;
+    border-image-source: linear-gradient(#005d84, #84007f);
+    border-image-slice: 1;
+    //border-width: 5px;
+    height: 401px;
+  }
+`;

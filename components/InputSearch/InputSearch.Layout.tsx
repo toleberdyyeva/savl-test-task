@@ -1,7 +1,7 @@
 import React from "react";
 import { InputSearchLayoutProps } from "./types";
 import { InputSearchStyles, InputSearchWrapper } from "./InputSearch.Styles";
-import SearchIcon from "./search.svg";
+import SearchIcon from "./icons/search.svg";
 
 const InputSearchLayout: React.FC<InputSearchLayoutProps> = (props) => {
   // ---------------------------------------------------------------------- props section
