@@ -1,7 +1,10 @@
 import { createSelector } from "reselect";
 import initialState from "./NftsAddresses.state";
 import { SavlRootState } from "../../index";
-import { ResolveSavlNftsByAddressesGroupedSecond } from "./helper";
+import {
+  ResolveSavlNftsByAddressesGrouped,
+  ResolveSavlNftsByAddressesGroupedSecond,
+} from "./helper";
 
 const getNftsAddressesInitialState = (state: SavlRootState) =>
   state.NftsAddressesModule || initialState;
@@ -13,14 +16,14 @@ export const getNftsByAddressSearchResult = createSelector(
 
     // Если честно не понятный пункт в требованиях по обледенению по ключу
 
-    // const images: any[] = ResolveSavlNftsByAddressesGrouped(
-    //   nfts_data,
-    //   address_used
-    // );
-    const nfts_image_data: any[] = ResolveSavlNftsByAddressesGroupedSecond(
+    const nfts_image_data: any[] = ResolveSavlNftsByAddressesGrouped(
       nfts_data.nfts,
       address_used
     );
+    // const nfts_image_data: any[] = ResolveSavlNftsByAddressesGroupedSecond(
+    //   nfts_data.nfts,
+    //   address_used
+    // );
 
     return {
       address_used,

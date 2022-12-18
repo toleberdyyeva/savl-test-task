@@ -4,5 +4,5 @@ export const SavlApiInstance: AxiosInstance = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  baseURL: process.env.API_BASE_URL,
+  baseURL: "https://dev.solhall.io/v1/",
 });

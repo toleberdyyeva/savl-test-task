@@ -25,7 +25,6 @@ const ResultImage: React.FC<NftDataWLink> = (props: NftDataWLink) => {
     SavlApiInstance({ url: image_request_url })
       .then((res) => {
         const { name, image } = res.data.data.metadata;
-        console.log(image);
         setImageUrlInfo({ image, name });
       })
       .catch((e) => {
@@ -56,8 +55,8 @@ const ResultBlock: React.FC<SearchPageLayoutProps> = (props) => {
     const { nfts_image_data } = searchResult;
     return (
       <SearchResultImagesWrapper>
-        {nfts_image_data.map((item) => (
-          <ResultImage {...item} />
+        {nfts_image_data.map((item, index) => (
+          <ResultImage {...item} key={index} />
         ))}
       </SearchResultImagesWrapper>
     );

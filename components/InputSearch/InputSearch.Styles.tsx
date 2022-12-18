@@ -12,6 +12,8 @@ export const InputSearchWrapper: React.FC<any> = styled.div`
   .iconWrapper {
     padding-left: 17px;
     padding-right: 8px;
+    display: flex;
+    align-items: center;
   }
 `;
 

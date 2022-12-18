@@ -14,20 +14,21 @@ const imageRequestLinkGenerator = (
 export const ResolveSavlNftsByAddressesGrouped = (
   nfts: SavlAPI_NftByAddressResponse["data"]["nfts"],
   address: SavlAPI_GetNftsByAddressPayload["address"]
-) =>
-  nfts.reduce((prev, current) => {
+) => {
+  const grouped = (nfts || []).reduce((prev, current) => {
     const { updateAuthority } = current;
     const existingItem = prev[updateAuthority];
     const image_request_url = imageRequestLinkGenerator(current, address);
     if (existingItem === undefined) {
       return {
         ...prev,
-        [updateAuthority]: [{ ...current, image_request_url }],
+        [updateAuthority]: { ...current, image_request_url },
       };
     }
-    existingItem.push(current);
-    return { ...prev, [updateAuthority]: existingItem };
+    return { ...prev, [updateAuthority]: { ...current, image_request_url } };
   }, {} as any);
+  return Object.values(grouped);
+};
 
 //
 export const ResolveSavlNftsByAddressesGroupedSecond = (
