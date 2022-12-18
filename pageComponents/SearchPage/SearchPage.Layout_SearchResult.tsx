@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SearchPageLayoutProps } from "./types";
 import {
   NftImage,
@@ -7,28 +7,58 @@ import {
   SearchResultWrapper,
 } from "./SearchPage.Styles";
 import { NftDataWLink } from "../../store/modules/NftsAdresses/types";
+import { SavlApiInstance } from "../../serivces";
+import ArrowRight from "./arrorRight.svg";
 
 const ErrorBlock: React.FC<SearchPageLayoutProps> = () => <>Error</>;
+
+const ResultImage: React.FC<NftDataWLink> = (props: NftDataWLink) => {
+  const { image_request_url } = props;
+
+  const [imageUrlInfo, setImageUrlInfo] = React.useState<{
+    image: string;
+    name: string;
+  }>({ image: "", name: "" });
+
+  const [imageUrlError, setImageUrlError] = React.useState<boolean>(false);
+  useEffect(() => {
+    SavlApiInstance({ url: image_request_url })
+      .then((res) => {
+        const { name, image } = res.data.data.metadata;
+        console.log(image);
+        setImageUrlInfo({ image, name });
+      })
+      .catch((e) => {
+        setImageUrlError(true);
+      });
+  }, [image_request_url]);
+
+  return (
+    <NftImage imageUrl={imageUrlInfo.image}>
+      <div className="cardWrapper">
+        <div className="image_layer" />
+        <div className="name_layer">
+          <p>{imageUrlInfo.name}</p>
+          <div className="iconWrapper">
+            <ArrowRight />
+          </div>
+        </div>
+      </div>
+    </NftImage>
+  );
+};
+
 const ResultBlock: React.FC<SearchPageLayoutProps> = (props) => {
   const { searchResult } = props;
   const { nfts_image_count } = searchResult;
 
-  const ResultImage = React.useCallback(
-    (data: NftDataWLink) => (
-      <NftImage>
-        <div className="image_layer" />
-        Hello
-      </NftImage>
-    ),
-    []
-  );
-
   const ResultImages = React.useMemo(() => {
     const { nfts_image_data } = searchResult;
-    console.log(nfts_image_data);
     return (
       <SearchResultImagesWrapper>
-        {nfts_image_data.map((item) => ResultImage(item))}
+        {nfts_image_data.map((item) => (
+          <ResultImage {...item} />
+        ))}
       </SearchResultImagesWrapper>
     );
   }, [searchResult]);

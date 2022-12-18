@@ -9,7 +9,7 @@ export const InputSearchWrapper: React.FC<any> = styled.div`
   display: flex;
   align-items: center;
   border-radius: 2px;
-  svg {
+  .iconWrapper {
     padding-left: 17px;
     padding-right: 8px;
   }

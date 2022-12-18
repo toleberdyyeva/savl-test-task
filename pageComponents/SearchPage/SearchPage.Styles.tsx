@@ -71,14 +71,38 @@ export const SearchResultImagesWrapper = styled("div")`
   margin: -15px;
 `;
 
-export const NftImage = styled("div")`
+export const NftImage = styled("div")<{
+  imageUrl: string;
+}>`
   flex-grow: 1;
   //background-color: green;
   width: 33.33%;
   max-width: 33.33%;
   padding: 15px;
-  .image_layer {
-    padding-top: 100%;
-    background-color: blue;
+  .cardWrapper {
+    overflow: hidden;
+    border-radius: 4px;
+    .name_layer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 17px 26px 25px 16px;
+      flex: 1 1 auto;
+      background-color: #01122a;
+      p {
+        margin: 0;
+        line-height: 1.375rem;
+        font-size: 1rem;
+      }
+      .iconWrapper {
+      }
+    }
+    .image_layer {
+      background-image: ${(props) => `url(${props.imageUrl})`};
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      padding-top: 100%;
+    }
   }
 `;

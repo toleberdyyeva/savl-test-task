@@ -1,7 +1,7 @@
 import React from "react";
 import { InputSearchLayoutProps } from "./types";
 import { InputSearchStyles, InputSearchWrapper } from "./InputSearch.Styles";
-import SearchIcon from "./icon.svg";
+import SearchIcon from "./search.svg";
 
 const InputSearchLayout: React.FC<InputSearchLayoutProps> = (props) => {
   // ---------------------------------------------------------------------- props section
@@ -9,7 +9,9 @@ const InputSearchLayout: React.FC<InputSearchLayoutProps> = (props) => {
   // ---------------------------------------------------------------------- layout return
   return (
     <InputSearchWrapper onClick={onWrapperClick}>
-      <SearchIcon />
+      <div className="iconWrapper">
+        <SearchIcon />
+      </div>
       <InputSearchStyles {...inputProps} />
     </InputSearchWrapper>
   );
