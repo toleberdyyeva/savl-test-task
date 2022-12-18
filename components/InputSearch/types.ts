@@ -10,4 +10,6 @@ export interface InputSearchProps
 export interface InputSearchLayoutProps
   extends Omit<InputSearchProps, "onSearchValueChange"> {
   onWrapperClick: () => void;
+  showCrossIcon: boolean;
+  onCrossIconClick: () => void;
 }

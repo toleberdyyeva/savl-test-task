@@ -28,6 +28,8 @@ const ErrorBlock: React.FC<SearchPageLayoutProps> = ({ searchResult }) => (
 );
 
 const ResultImage: React.FC<NftDataWLink> = (props: NftDataWLink) => {
+  // TODO: В самой задаче этого не требует, но я бы добавил в требование с LazyLoad
+
   const { image_request_url } = props;
 
   const [imageUrlInfo, setImageUrlInfo] = React.useState<{

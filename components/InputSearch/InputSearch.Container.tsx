@@ -13,6 +13,10 @@ const InputSearchContainer: React.FC<InputSearchProps> = (props) => {
     (e: React.ChangeEvent<HTMLInputElement>) => setValue(() => e.target?.value),
     [setValue]
   );
+  const showCrossIcon = React.useMemo(() => value.length > 0, [value]);
+  const onCrossIconClick = React.useCallback(() => {
+    setValue(() => "");
+  }, []);
   // ---------------------------------------------------------------------- effect section
   useEffect(() => {
     if (onSearchValueChange) {
@@ -28,6 +32,8 @@ const InputSearchContainer: React.FC<InputSearchProps> = (props) => {
   };
   const layoutProps = {
     onWrapperClick: Helpers.onWrapperClick(INPUT_ID),
+    showCrossIcon,
+    onCrossIconClick,
     ...inputProps,
   };
   // ---------------------------------------------------------------------- layout return

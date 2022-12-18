@@ -4,6 +4,7 @@ import { FormControlSpacing } from "../common";
 import { InputSearchProps } from "./types";
 
 export const InputSearchWrapper: React.FC<any> = styled.div`
+  cursor: pointer;
   flex: 1 1 auto;
   border: 1px solid #005d84;
   display: flex;
@@ -12,6 +13,12 @@ export const InputSearchWrapper: React.FC<any> = styled.div`
   .iconWrapper {
     padding-left: 17px;
     padding-right: 8px;
+    display: flex;
+    align-items: center;
+  }
+  .crossIconWrapper {
+    position: relative;
+    padding: 0 13px;
     display: flex;
     align-items: center;
   }
