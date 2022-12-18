@@ -1,15 +1,19 @@
 import React from "react";
 import { Container } from "../../components/Container";
 import { InputSearch } from "../../components/InputSearch";
-import { SearchPageProps } from "./types";
+import { SearchPageLayoutProps } from "./types";
 import {
   SearchTitle,
   SearchFormBlock,
   SearchButton,
 } from "./SearchPage.Styles";
 
-const SearchPageLayout: React.FC<SearchPageProps> = (props) => {
-  const { ...rest } = props;
+const SearchPageLayout: React.FC<SearchPageLayoutProps> = (props) => {
+  // ---------------------------------------------------------------------- props section
+  const { searchInitialValue, onSearchValueChanged } = props;
+  // ---------------------------------------------------------------------- child props section
+  const inputProps = { value: searchInitialValue, onSearchValueChanged };
+  // ---------------------------------------------------------------------- layout return
   return (
     <Container>
       <SearchTitle>
@@ -17,7 +21,7 @@ const SearchPageLayout: React.FC<SearchPageProps> = (props) => {
         by address
       </SearchTitle>
       <SearchFormBlock>
-        <InputSearch />
+        <InputSearch {...inputProps} />
         <SearchButton>Search</SearchButton>
       </SearchFormBlock>
     </Container>

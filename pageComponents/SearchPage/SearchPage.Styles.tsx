@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Button } from "../../components/Button";
 
 export const SearchTitle = styled("h1")`
-  margin: 117px auto 48px;
+  margin: 117px 0 48px;
   line-height: 54px;
   font-size: 2.5rem;
   font-weight: 600;
@@ -15,7 +15,7 @@ export const SearchTitle = styled("h1")`
 
 export const SearchFormBlock = styled("div")`
   width: 100%;
-  max-width: 659px;
+  max-width: 660px;
   margin: 0 auto;
   display: flex;
   gap: 19px;
@@ -29,7 +29,8 @@ export const SearchButton = styled(Button)`
   font-size: 0.87rem;
   padding-left: 18.5px;
   padding-right: 18.5px;
-  line-height: 1.42rem;
+  line-height: 1.25rem;
   width: 87px;
   font-weight: 500;
+  border-radius: 2px;
 `;
